@@ -2,7 +2,6 @@
 
 FROM php:8.2-fpm-alpine AS php-base
 
-# Install system dependencies and PHP extensions required by Laravel
 RUN apk add --no-cache \
         bash \
         curl \
@@ -14,9 +13,12 @@ RUN apk add --no-cache \
         libzip-dev \
         zlib-dev \
         oniguruma-dev \
+        libpq-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
         pdo_mysql \
+        pdo_pgsql \
+        pgsql \
         mbstring \
         exif \
         pcntl \
@@ -46,20 +48,15 @@ RUN npm run production
 FROM php-base AS app
 WORKDIR /var/www/html
 
-# Copy application code
 COPY . .
-
-# Bring in compiled dependencies and assets
 COPY --from=vendor /app/vendor ./vendor
 COPY --from=assets /app/public ./public
 
-# Ensure writable directories for Laravel
 RUN addgroup -g 1000 laravel && adduser -G laravel -u 1000 -D laravel \
     && chown -R laravel:laravel storage bootstrap/cache
 
 USER laravel
 EXPOSE 8080
-
 ENV PORT=8080
-# Serve Laravel via PHP's built-in server on the public directory
-CMD ["sh", "-c", "php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public public/index.php"]
+
+CMD ["sh", "-c", "php artisan migrate --force && php artisan db:seed --force && php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public public/index.php"]
