@@ -31,7 +31,7 @@ WORKDIR /var/www/html
 FROM composer:2.7 AS vendor
 WORKDIR /app
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --no-progress --prefer-dist --optimize-autoloader
+RUN composer install --no-dev --no-progress --prefer-dist --optimize-autoloader --no-scripts
 
 # Frontend build (Laravel Mix)
 FROM node:18-alpine AS assets
