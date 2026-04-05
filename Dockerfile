@@ -58,6 +58,8 @@ RUN addgroup -g 1000 laravel && adduser -G laravel -u 1000 -D laravel \
     && chown -R laravel:laravel storage bootstrap/cache
 
 USER laravel
-EXPOSE 9000
+EXPOSE 8080
 
-CMD ["php-fpm"]
+# Run Laravel via PHP built-in server (Render expects an HTTP listener on $PORT)
+ENV PORT=8080
+CMD ["sh", "-c", "php -d variables_order=EGPCS -S 0.0.0.0:${PORT} server.php"]
