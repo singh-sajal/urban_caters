@@ -38,7 +38,8 @@ FROM node:18-alpine AS assets
 WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm install
-COPY webpack.mix.js resources/ ./
+COPY webpack.mix.js ./
+COPY resources ./resources
 RUN npm run production
 
 # Final image
