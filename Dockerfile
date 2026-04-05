@@ -60,6 +60,6 @@ RUN addgroup -g 1000 laravel && adduser -G laravel -u 1000 -D laravel \
 USER laravel
 EXPOSE 8080
 
-# Run Laravel via PHP built-in server (Render expects an HTTP listener on $PORT)
 ENV PORT=8080
-CMD ["sh", "-c", "php -d variables_order=EGPCS -S 0.0.0.0:${PORT} server.php"]
+# Serve Laravel via PHP's built-in server on the public directory
+CMD ["sh", "-c", "php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public public/index.php"]
