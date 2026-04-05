@@ -24,7 +24,8 @@
 <body class="antialiased">
     <div class="fixed inset-x-0 top-0 z-40 bg-[#0b1220]/60 glass border-b border-white/5" x-data="{open:false, scrolled:false}" @scroll.window="scrolled = (window.scrollY > 10)">
         <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
-            <a href="/" class="text-lg font-bold tracking-tight">Eventora<span class="text-cyan-300">.</span></a>
+            {{-- <a href="/" class="text-lg font-bold tracking-tight">Eventora<span class="text-cyan-300">.</span></a> --}}
+            <a href="/" class="text-lg font-bold tracking-tight">Urban Caters<span class="text-cyan-300">.</span></a>
             <div class="hidden md:flex items-center space-x-6 text-sm">
                 <a href="/" class="hover:text-white {{ request()->is('/') ? 'text-white font-semibold' : 'text-slate-300' }}">Home</a>
                 <a href="/about" class="hover:text-white {{ request()->is('about') ? 'text-white font-semibold' : 'text-slate-300' }}">About</a>
@@ -66,10 +67,10 @@
             </div>
             <div>
                 <div class="text-sm uppercase text-slate-500">Contact</div>
-                <p class="text-slate-300 mt-3">hello@eventora.test<br>+1 (555) 123-4400<br>Mumbai · Remote worldwide</p>
+                <p class="text-slate-300 mt-3">hello@eventora.test<br>+1 (555) 123-4400<br>Mumbai ï¿½ Remote worldwide</p>
             </div>
         </div>
-        <div class="border-t border-white/5 text-center text-slate-500 py-4 text-sm">© {{ date('Y') }} Eventora Events. All rights reserved.</div>
+        <div class="border-t border-white/5 text-center text-slate-500 py-4 text-sm">ï¿½ {{ date('Y') }} Eventora Events. All rights reserved.</div>
     </footer>
 </body>
 </html>
