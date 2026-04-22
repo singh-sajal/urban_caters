@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.log
 // Admin area
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
+    Route::put('/settings', [SiteSettingController::class, 'update'])->name('settings.update');
     Route::resource('events', EventController::class);
     Route::resource('gallery', GalleryController::class)->except(['show']);
     Route::resource('team', TeamController::class)->except(['show']);

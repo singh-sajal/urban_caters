@@ -1,13 +1,21 @@
 @extends('layouts.front')
 
 @section('content')
+@php
+    $heroHeading = $siteSettings?->hero_main_heading ?: 'Designing elevated events that feel effortless.';
+    $heroSubHeading = $siteSettings?->hero_sub_heading ?: 'We blend production, hospitality, and storytelling to craft weddings, corporate offsites, and experiential launches your guests remember.';
+    $heroImage = !empty($siteSettings?->hero_image)
+        ? asset('storage/'.$siteSettings->hero_image)
+        : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80';
+@endphp
+
 <section class="relative overflow-hidden">
     <div class="absolute inset-0 opacity-40" style="background: radial-gradient(circle at 20% 20%, rgba(138,92,246,0.25), transparent 25%), radial-gradient(circle at 80% 0%, rgba(0,194,255,0.2), transparent 30%), radial-gradient(circle at 50% 80%, rgba(255,255,255,0.06), transparent 30%);"></div>
     <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center relative z-10">
         <div>
             <p class="text-cyan-200 uppercase text-xs tracking-[0.3em]">Event Experience Studio</p>
-            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mt-4">Designing elevated events that feel <span class="text-cyan-300">effortless</span>.</h1>
-            <p class="text-slate-300 mt-4 text-lg">We blend production, hospitality, and storytelling to craft weddings, corporate offsites, and experiential launches your guests remember.</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mt-4">{{ $heroHeading }}</h1>
+            <p class="text-slate-300 mt-4 text-lg">{{ $heroSubHeading }}</p>
             <div class="mt-6 flex flex-wrap gap-3">
                 <a href="/contact" class="gradient-btn px-6 py-3 rounded-full font-semibold">Book an Event</a>
                 <a href="/events" class="px-6 py-3 rounded-full border border-white/20 hover:border-white/50">View Our Work</a>
@@ -21,7 +29,7 @@
         <div class="relative">
             <div class="absolute -inset-4 bg-gradient-to-br from-cyan-500/30 to-purple-500/20 blur-3xl"></div>
             <div class="relative glass rounded-3xl p-4 border border-white/10 shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Event" class="rounded-2xl shadow-lg">
+                <img src="{{ $heroImage }}" alt="Hero event" class="rounded-2xl shadow-lg">
             </div>
         </div>
     </div>
@@ -74,20 +82,20 @@
         <div class="text-lg font-semibold">Snapshot metrics</div>
         <div class="mt-4 grid grid-cols-2 gap-4 text-center">
             <div class="p-4 rounded-xl bg-white/5">
-                <div class="text-3xl font-bold">150+</div>
-                <div class="text-slate-400 text-sm">Events delivered</div>
+                <div class="text-3xl font-bold">{{ $siteSettings?->metric_one_value ?: '150+' }}</div>
+                <div class="text-slate-400 text-sm">{{ $siteSettings?->metric_one_label ?: 'Events delivered' }}</div>
             </div>
             <div class="p-4 rounded-xl bg-white/5">
-                <div class="text-3xl font-bold">500+</div>
-                <div class="text-slate-400 text-sm">Happy guests</div>
+                <div class="text-3xl font-bold">{{ $siteSettings?->metric_two_value ?: '500+' }}</div>
+                <div class="text-slate-400 text-sm">{{ $siteSettings?->metric_two_label ?: 'Happy guests' }}</div>
             </div>
             <div class="p-4 rounded-xl bg-white/5">
-                <div class="text-3xl font-bold">10</div>
-                <div class="text-slate-400 text-sm">Years in craft</div>
+                <div class="text-3xl font-bold">{{ $siteSettings?->metric_three_value ?: '10' }}</div>
+                <div class="text-slate-400 text-sm">{{ $siteSettings?->metric_three_label ?: 'Years in craft' }}</div>
             </div>
             <div class="p-4 rounded-xl bg-white/5">
-                <div class="text-3xl font-bold">24/7</div>
-                <div class="text-slate-400 text-sm">Onsite support</div>
+                <div class="text-3xl font-bold">{{ $siteSettings?->metric_four_value ?: '24/7' }}</div>
+                <div class="text-slate-400 text-sm">{{ $siteSettings?->metric_four_label ?: 'Onsite support' }}</div>
             </div>
         </div>
     </div>

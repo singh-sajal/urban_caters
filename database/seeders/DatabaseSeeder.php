@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        $this->call(\Database\Seeders\SiteSettingSeeder::class);
+
         if (Event::count() === 0) {
 
             // Create Admin User

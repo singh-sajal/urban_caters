@@ -5,6 +5,11 @@
     <div>
         <h1 class="text-3xl font-bold">Plan with Eventora</h1>
         <p class="text-slate-300 mt-3">Tell us about your date, location, audience, and goals. We respond in under 24 hours.</p>
+        <div class="mt-4 text-sm text-slate-300 space-y-1">
+            <div><span class="font-semibold">Phone:</span> {{ $siteSettings?->contact_phone ?: '+1 (555) 123-4400' }}</div>
+            <div><span class="font-semibold">Email:</span> {{ $siteSettings?->contact_email ?: 'hello@eventora.test' }}</div>
+            <div><span class="font-semibold">Address:</span> {{ $siteSettings?->contact_address ?: 'Mumbai - Remote worldwide' }}</div>
+        </div>
         <div class="mt-6 space-y-4 text-slate-300 text-sm">
             <div class="flex items-center space-x-3"><span class="w-2 h-2 rounded-full bg-cyan-300"></span><span>Concept & design decks</span></div>
             <div class="flex items-center space-x-3"><span class="w-2 h-2 rounded-full bg-cyan-300"></span><span>Vendor & artist sourcing</span></div>

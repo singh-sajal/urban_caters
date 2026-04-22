@@ -8,8 +8,10 @@ use App\Models\EventCategory;
 use App\Models\GalleryImage;
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Throwable;
 
 class FrontendController extends Controller
 {
@@ -80,11 +82,25 @@ class FrontendController extends Controller
 
         $message = ContactMessage::create($validated);
 
-        if (config('mail.mailers.smtp')) {
-            Mail::raw('New contact message from ' . $message->name . "\n" . $message->message, function ($mail) use ($message) {
-                $mail->to(config('mail.from.address'))
-                    ->subject('New event inquiry: ' . Str::limit($message->event_type ?? 'General', 40));
-            });
+        $recipient = config('mail.from.address');
+
+        if (is_string($recipient) && filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
+            try {
+                Mail::raw('New contact message from ' . $message->name . "\n" . $message->message, function ($mail) use ($message, $recipient) {
+                    $mail->to($recipient)
+                        ->subject('New event inquiry: ' . Str::limit($message->event_type ?? 'General', 40));
+                });
+            } catch (Throwable $e) {
+                Log::warning('Contact message stored but notification email failed to send.', [
+                    'contact_message_id' => $message->id,
+                    'error' => $e->getMessage(),
+                ]);
+            }
+        } else {
+            Log::warning('Contact message stored but notification email skipped due to invalid recipient address.', [
+                'contact_message_id' => $message->id,
+                'recipient' => $recipient,
+            ]);
         }
 
         return back()->with('status', 'Thanks! Your message has been sent.');

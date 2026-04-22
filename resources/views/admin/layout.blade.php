@@ -35,6 +35,18 @@
             --accent: #14b8a6;
         }
 
+        html[data-theme='dark'] {
+            --app-bg-1: #020617;
+            --app-bg-2: #0f172a;
+            --card: rgba(15, 23, 42, 0.74);
+            --card-strong: rgba(15, 23, 42, 0.9);
+            --line: rgba(148, 163, 184, 0.24);
+            --ink: #e2e8f0;
+            --muted: #94a3b8;
+            --brand: #38bdf8;
+            --accent: #2dd4bf;
+        }
+
         body {
             font-family: 'Space Grotesk', sans-serif;
             color: var(--ink);
@@ -102,6 +114,73 @@
             background: rgba(254, 242, 242, 0.85);
         }
 
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--card);
+            color: var(--ink);
+            padding: 0.45rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .theme-toggle svg {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        html[data-theme='dark'] .bg-white\/70,
+        html[data-theme='dark'] .bg-white\/85,
+        html[data-theme='dark'] .bg-white\/80,
+        html[data-theme='dark'] .bg-white\/50,
+        html[data-theme='dark'] .hover\:bg-white\/80:hover,
+        html[data-theme='dark'] .hover\:bg-white\/70:hover {
+            background-color: rgba(15, 23, 42, 0.72) !important;
+        }
+
+        html[data-theme='dark'] .text-slate-700,
+        html[data-theme='dark'] .text-slate-600,
+        html[data-theme='dark'] .text-slate-500,
+        html[data-theme='dark'] .text-slate-400 {
+            color: #cbd5e1 !important;
+        }
+
+        html[data-theme='dark'] .border-slate-200\/50,
+        html[data-theme='dark'] .border-slate-200\/60,
+        html[data-theme='dark'] .border-slate-200\/70,
+        html[data-theme='dark'] .border-slate-200\/75,
+        html[data-theme='dark'] .border-slate-200\/80,
+        html[data-theme='dark'] .border-slate-200,
+        html[data-theme='dark'] .hover\:border-slate-200:hover {
+            border-color: rgba(148, 163, 184, 0.24) !important;
+        }
+
+        html[data-theme='dark'] .bg-slate-50,
+        html[data-theme='dark'] .bg-slate-50\/90 {
+            background-color: rgba(30, 41, 59, 0.7) !important;
+        }
+
+        html[data-theme='dark'] .field {
+            background: rgba(15, 23, 42, 0.9);
+            color: #e2e8f0;
+            border-color: rgba(148, 163, 184, 0.33);
+        }
+
+        html[data-theme='dark'] .btn-ghost {
+            background: rgba(30, 41, 59, 0.75);
+            color: #e2e8f0;
+            border-color: rgba(148, 163, 184, 0.3);
+        }
+
+        html[data-theme='dark'] .btn-danger {
+            background: rgba(69, 10, 10, 0.4);
+            border-color: rgba(248, 113, 113, 0.35);
+            color: #fda4af;
+        }
+
         .fade-up {
             animation: fadeUp 360ms ease both;
         }
@@ -120,12 +199,15 @@
 </head>
 <body class="min-h-screen">
     @php
+        $brandName = config('app.name', 'Eventora');
+        $shortLogoUrl = !empty($siteSettings?->short_logo) ? asset('storage/'.$siteSettings->short_logo) : null;
         $navLinks = [
             ['route' => 'admin.dashboard', 'label' => 'Dashboard', 'icon' => 'dashboard', 'active' => request()->routeIs('admin.dashboard')],
             ['route' => 'admin.events.index', 'label' => 'Events', 'icon' => 'events', 'active' => request()->routeIs('admin.events.*')],
             ['route' => 'admin.gallery.index', 'label' => 'Gallery', 'icon' => 'gallery', 'active' => request()->routeIs('admin.gallery.*')],
             ['route' => 'admin.team.index', 'label' => 'Team', 'icon' => 'team', 'active' => request()->routeIs('admin.team.*')],
             ['route' => 'admin.messages.index', 'label' => 'Messages', 'icon' => 'messages', 'active' => request()->routeIs('admin.messages.*')],
+            ['route' => 'admin.settings.edit', 'label' => 'Settings', 'icon' => 'settings', 'active' => request()->routeIs('admin.settings.*')],
         ];
     @endphp
 
@@ -135,9 +217,13 @@
         <aside class="fixed inset-y-0 left-0 z-40 w-72 lg:w-[17rem] glass border-r border-slate-200/50 shadow-soft transition-all duration-200 -translate-x-full lg:translate-x-0" data-sidebar>
             <div class="h-16 px-4 border-b border-slate-200/60 flex items-center justify-between">
                 <div class="flex items-center gap-3 min-w-0">
-                    <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-sky-500 to-teal-500 text-white font-bold grid place-items-center">E</div>
+                    @if($shortLogoUrl)
+                        <img src="{{ $shortLogoUrl }}" alt="Short logo" class="h-9 w-9 rounded-lg object-cover border border-slate-200/60">
+                    @else
+                        <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-sky-500 to-teal-500 text-white font-bold grid place-items-center">{{ strtoupper(substr($brandName, 0, 1)) }}</div>
+                    @endif
                     <div class="sidebar-label min-w-0">
-                        <p class="font-bold text-sm tracking-wide truncate">Eventora Admin</p>
+                        <p class="font-bold text-sm tracking-wide truncate">{{ $brandName }} Admin</p>
                         <p class="text-[11px] text-slate-500 truncate">Control Center</p>
                     </div>
                 </div>
@@ -159,6 +245,8 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.75 5.5h14.5A1.75 1.75 0 0121 7.25v9.5a1.75 1.75 0 01-1.75 1.75H4.75A1.75 1.75 0 013 16.75v-9.5A1.75 1.75 0 014.75 5.5z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 10.5a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm13 6l-5.5-5.5L9 17.5" /></svg>
                             @elseif($item['icon'] === 'team')
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 19a4 4 0 00-8 0m13 0a3 3 0 00-3-3h-1m4 3v1m-18-1v1m4-4H6a3 3 0 00-3 3m11-8a3 3 0 11-6 0 3 3 0 016 0zm7 1a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" /></svg>
+                            @elseif($item['icon'] === 'settings')
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317a1 1 0 011.35-.936l.645.241a1 1 0 00.76 0l.645-.24a1 1 0 011.35.935l.057.688a1 1 0 00.51.79l.594.34a1 1 0 01.366 1.366l-.34.593a1 1 0 000 .76l.34.593a1 1 0 01-.366 1.366l-.593.34a1 1 0 00-.51.79l-.058.688a1 1 0 01-1.35.936l-.645-.241a1 1 0 00-.76 0l-.645.24a1 1 0 01-1.35-.935l-.057-.688a1 1 0 00-.51-.79l-.594-.34a1 1 0 01-.366-1.366l.34-.593a1 1 0 000-.76l-.34-.593a1 1 0 01.366-1.366l.593-.34a1 1 0 00.51-.79l.058-.688z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                             @else
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 10h8M8 14h5M6.75 4h10.5A1.75 1.75 0 0119 5.75v12.5A1.75 1.75 0 0117.25 20h-10.5A1.75 1.75 0 015 18.25V5.75A1.75 1.75 0 016.75 4z" /></svg>
                             @endif
@@ -194,6 +282,10 @@
                     </div>
                 </div>
                 <div class="text-xs sm:text-sm text-slate-600 bg-white/85 border border-slate-200/70 rounded-full px-3 py-1">Signed in as admin</div>
+                <button type="button" class="theme-toggle" data-theme-toggle>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12.79A9 9 0 1111.21 3c0 0-1.71 6.29 3.79 11.79S21 12.79 21 12.79z" /></svg>
+                    <span data-theme-label>Light</span>
+                </button>
             </header>
 
             <div class="p-4 sm:p-6 fade-up">
@@ -218,6 +310,20 @@
             const closeBtn = shell.querySelector('[data-sidebar-close]');
             const collapseBtn = shell.querySelector('[data-sidebar-collapse-toggle]');
             const storageKey = 'admin_sidebar_collapsed';
+            const themeKey = 'urban_admin_theme';
+
+            const applyTheme = (theme) => {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem(themeKey, theme);
+                shell.querySelectorAll('[data-theme-label]').forEach((el) => {
+                    el.textContent = theme === 'dark' ? 'Dark' : 'Light';
+                });
+            };
+
+            const preferredTheme = localStorage.getItem(themeKey)
+                || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+            applyTheme(preferredTheme);
 
             const collapseDesktop = (collapsed) => {
                 const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
@@ -262,6 +368,13 @@
                 const next = !current;
                 localStorage.setItem(storageKey, next ? '1' : '0');
                 collapseDesktop(next);
+            });
+
+            shell.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const nextTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                    applyTheme(nextTheme);
+                });
             });
 
             window.addEventListener('resize', () => {
