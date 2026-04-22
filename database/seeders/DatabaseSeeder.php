@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
 
             // Create Admin User
             User::firstOrCreate(
-                ['email' => 'admin@eventora.test'],
+                ['email' => 'admin@urbancaters.test'],
                 [
                     'name' => 'Admin',
                     'password' => Hash::make('password'),
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
                         'event_category_id' => $category->id,
                         'event_date' => now()->addDays($i * 10),
                         'location' => 'Mumbai',
-                        'summary' => 'Signature ' . strtolower($category->name) . ' experience crafted by Eventora.',
+                        'summary' => 'Signature ' . strtolower($category->name) . ' experience crafted by Urban Caters.',
                         'body' => 'Full production, styling, and hospitality designed for impact.',
                         'is_featured' => $i < 2,
                     ]

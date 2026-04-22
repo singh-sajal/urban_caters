@@ -5,7 +5,7 @@
 <section class="max-w-5xl mx-auto px-4 py-10">
     <div class="glass rounded-3xl p-8 border border-white/10">
         <div class="text-cyan-200 text-xs uppercase tracking-[0.3em]">About Us</div>
-        <h1 class="text-3xl font-bold mt-3">{{ $siteSettings?->about_heading ?: 'Eventora is a boutique team of producers, designers, and technologists.' }}</h1>
+        <h1 class="text-3xl font-bold mt-3">{{ $siteSettings?->about_heading ?: 'Urban Caters is a boutique team of producers, designers, and technologists.' }}</h1>
         <p class="text-slate-300 mt-3">{{ $siteSettings?->about_content ?: 'We operate as your embedded event squad balancing budget discipline with imaginative staging, environmental design, and guest journeys.' }}</p>
         <div class="grid md:grid-cols-4 gap-4 mt-6">
             <div class="p-4 rounded-2xl bg-white/5 text-center">

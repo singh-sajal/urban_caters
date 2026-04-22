@@ -95,7 +95,7 @@
         $brandName = config('app.name', 'Urban Caters');
         $logoUrl = !empty($siteSettings?->logo) ? asset('storage/'.$siteSettings->logo) : null;
         $shortLogoUrl = !empty($siteSettings?->short_logo) ? asset('storage/'.$siteSettings->short_logo) : null;
-        $contactEmail = $siteSettings?->contact_email ?: 'hello@eventora.test';
+        $contactEmail = $siteSettings?->contact_email ?: 'hello@urbancaters.test';
         $contactPhone = $siteSettings?->contact_phone ?: '+1 (555) 123-4400';
         $whatsAppNumber = $siteSettings?->whatsapp_number ?: '';
         $waDigits = preg_replace('/\D+/', '', $whatsAppNumber ?? '');

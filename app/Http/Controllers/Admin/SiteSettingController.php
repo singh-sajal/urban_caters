@@ -15,7 +15,7 @@ class SiteSettingController extends Controller
             'whatsapp_number' => '+15551234400',
             'hero_main_heading' => 'Designing elevated events that feel effortless.',
             'hero_sub_heading' => 'We blend production, hospitality, and storytelling to craft unforgettable events.',
-            'about_heading' => 'Eventora is a boutique team of producers, designers, and technologists.',
+            'about_heading' => 'Urban Caters is a boutique team of producers, designers, and technologists.',
             'about_content' => 'We operate as your embedded event squad balancing budget discipline with imaginative staging.',
             'metric_one_label' => 'Events delivered',
             'metric_one_value' => '150+',

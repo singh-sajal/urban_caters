@@ -8,7 +8,7 @@
 
     <section class="max-w-4xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
         <div>
-            <h1 class="text-3xl font-bold">Plan with Eventora</h1>
+            <h1 class="text-3xl font-bold">Plan with Urban Caters</h1>
             <p class="text-slate-300 mt-3">Tell us about your date, location, audience, and goals. We respond in under 24
                 hours.</p>
             <div class="mt-4 text-sm text-slate-300 space-y-1">
@@ -17,7 +17,7 @@
                 @if (!empty($siteSettings?->whatsapp_number))
                     <div><span class="font-semibold">WhatsApp:</span> {{ $siteSettings->whatsapp_number }}</div>
                 @endif
-                <div><span class="font-semibold">Email:</span> {{ $siteSettings?->contact_email ?: 'hello@eventora.test' }}
+                <div><span class="font-semibold">Email:</span> {{ $siteSettings?->contact_email ?: 'hello@urbancaters.test' }}
                 </div>
                 <div><span class="font-semibold">Address:</span>
                     {{ $siteSettings?->contact_address ?: 'Mumbai - Remote worldwide' }}</div>

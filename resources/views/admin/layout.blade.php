@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | {{ config('app.name', 'Eventora') }}</title>
+    <title>Admin | {{ config('app.name', 'Urban Caters') }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -199,7 +199,7 @@
 </head>
 <body class="min-h-screen">
     @php
-        $brandName = config('app.name', 'Eventora');
+        $brandName = config('app.name', 'Urban Caters');
         $shortLogoUrl = !empty($siteSettings?->short_logo) ? asset('storage/'.$siteSettings->short_logo) : null;
         $navLinks = [
             ['route' => 'admin.dashboard', 'label' => 'Dashboard', 'icon' => 'dashboard', 'active' => request()->routeIs('admin.dashboard')],

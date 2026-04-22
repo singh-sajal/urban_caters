@@ -17,11 +17,11 @@ class SiteSettingSeeder extends Seeder
             [
                 'contact_phone' => '+1 (555) 123-4400',
                 'whatsapp_number' => '+15551234400',
-                'contact_email' => 'hello@eventora.test',
+                'contact_email' => 'hello@urbancaters.test',
                 'contact_address' => 'Mumbai - Remote worldwide',
                 'hero_main_heading' => 'Designing elevated events that feel effortless.',
                 'hero_sub_heading' => 'We blend production, hospitality, and storytelling to craft weddings, corporate offsites, and experiential launches your guests remember.',
-                'about_heading' => 'Eventora is a boutique team of producers, designers, and technologists.',
+                'about_heading' => 'Urban Caters is a boutique team of producers, designers, and technologists.',
                 'about_content' => 'We operate as your embedded event squad balancing budget discipline with imaginative staging, environmental design, and guest journeys.',
                 'metric_one_label' => 'Events delivered',
                 'metric_one_value' => '150+',

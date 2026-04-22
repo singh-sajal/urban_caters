@@ -80,7 +80,7 @@
 
     <div class="min-h-screen grid lg:grid-cols-2">
         <div class="hidden lg:flex flex-col justify-between p-10 border-r backdrop-blur-xl" style="border-color: var(--login-panel-border); background: var(--login-panel);">
-            <div class="text-sm font-semibold tracking-wide" style="color: var(--login-muted);">Eventora Admin Suite</div>
+            <div class="text-sm font-semibold tracking-wide" style="color: var(--login-muted);">Urban Caters Admin Suite</div>
             <div>
                 <h1 class="text-4xl font-bold leading-tight max-w-lg">Own the day-of operations with calm, clear control.</h1>
                 <p class="mt-4 max-w-md" style="color: var(--login-muted);">Manage events, media, and team updates from one streamlined workspace built for production speed.</p>
