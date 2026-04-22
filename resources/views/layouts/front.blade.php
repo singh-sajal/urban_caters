@@ -97,6 +97,9 @@
         $shortLogoUrl = !empty($siteSettings?->short_logo) ? asset('storage/'.$siteSettings->short_logo) : null;
         $contactEmail = $siteSettings?->contact_email ?: 'hello@eventora.test';
         $contactPhone = $siteSettings?->contact_phone ?: '+1 (555) 123-4400';
+        $whatsAppNumber = $siteSettings?->whatsapp_number ?: '';
+        $waDigits = preg_replace('/\D+/', '', $whatsAppNumber ?? '');
+        $waUrl = $waDigits ? 'https://wa.me/'.$waDigits : null;
         $contactAddress = $siteSettings?->contact_address ?: 'Mumbai - Remote worldwide';
     @endphp
 
@@ -163,6 +166,11 @@
             <div>
                 <div class="text-sm uppercase text-slate-500">Contact</div>
                 <p class="text-slate-300 mt-3">{{ $contactEmail }}<br>{{ $contactPhone }}<br>{{ $contactAddress }}</p>
+                @if($waUrl)
+                    <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer" class="inline-flex mt-3 items-center gap-2 px-3 py-2 rounded-full text-sm font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 hover:bg-emerald-500/30">
+                        <span>WhatsApp</span>
+                    </a>
+                @endif
             </div>
         </div>
         <div class="border-t border-white/5 text-center text-slate-500 py-4 text-sm">&copy; {{ date('Y') }} {{ $brandName }}. All rights reserved.</div>

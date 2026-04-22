@@ -11,6 +11,7 @@ class SiteSetting extends Model
 
     protected $fillable = [
         'contact_phone',
+        'whatsapp_number',
         'contact_email',
         'contact_address',
         'logo',

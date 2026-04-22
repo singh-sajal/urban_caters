@@ -97,10 +97,14 @@
 
     <div>
         <h2 class="text-lg font-semibold">Contact Information</h2>
-        <div class="grid md:grid-cols-3 gap-4 mt-3">
+        <div class="grid md:grid-cols-4 gap-4 mt-3">
             <div>
                 <label class="text-sm text-slate-600">Contact Number</label>
                 <input type="text" name="contact_phone" value="{{ old('contact_phone', $settings->contact_phone) }}" class="field mt-1">
+            </div>
+            <div>
+                <label class="text-sm text-slate-600">WhatsApp Number</label>
+                <input type="text" name="whatsapp_number" value="{{ old('whatsapp_number', $settings->whatsapp_number) }}" class="field mt-1" placeholder="e.g. +15551234400">
             </div>
             <div>
                 <label class="text-sm text-slate-600">Contact Email</label>

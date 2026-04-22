@@ -16,6 +16,7 @@ class SiteSettingSeeder extends Seeder
             ['id' => 1],
             [
                 'contact_phone' => '+1 (555) 123-4400',
+                'whatsapp_number' => '+15551234400',
                 'contact_email' => 'hello@eventora.test',
                 'contact_address' => 'Mumbai - Remote worldwide',
                 'hero_main_heading' => 'Designing elevated events that feel effortless.',

@@ -12,6 +12,7 @@ class SiteSettingController extends Controller
     public function edit()
     {
         $settings = SiteSetting::firstOrCreate([], [
+            'whatsapp_number' => '+15551234400',
             'hero_main_heading' => 'Designing elevated events that feel effortless.',
             'hero_sub_heading' => 'We blend production, hospitality, and storytelling to craft unforgettable events.',
             'about_heading' => 'Eventora is a boutique team of producers, designers, and technologists.',
@@ -35,6 +36,7 @@ class SiteSettingController extends Controller
 
         $data = $request->validate([
             'contact_phone' => 'nullable|string|max:50',
+            'whatsapp_number' => 'nullable|string|max:30',
             'contact_email' => 'nullable|email|max:255',
             'contact_address' => 'nullable|string|max:255',
             'hero_main_heading' => 'nullable|string|max:255',
