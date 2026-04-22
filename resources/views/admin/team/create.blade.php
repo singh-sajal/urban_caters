@@ -1,9 +1,9 @@
 @extends('admin.layout')
 @section('title','Add Team Member')
 @section('content')
-<form action="{{ route('admin.team.store') }}" method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-xl shadow-sm space-y-4">
+<form action="{{ route('admin.team.store') }}" method="post" enctype="multipart/form-data" class="panel p-5 sm:p-6 space-y-5">
     @csrf
     @include('admin.team.partials.form')
-    <button class="bg-indigo-600 text-white px-4 py-2 rounded">Save</button>
+    <button class="btn btn-primary">Save</button>
 </form>
 @endsection
