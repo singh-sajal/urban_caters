@@ -55,7 +55,7 @@
                 <div class="p-4 space-y-2">
                     <div class="text-cyan-200 text-xs uppercase">{{ $event->category->name ?? 'Signature' }}</div>
                     <div class="text-lg font-semibold group-hover:text-white">{{ $event->title }}</div>
-                    <div class="text-slate-400 text-sm">{{ optional($event->event_date)->format('M d, Y') }} · {{ $event->location }}</div>
+                    <div class="text-slate-400 text-sm">{{ optional($event->event_date)->format('M d, Y') }} ï¿½ {{ $event->location }}</div>
                 </div>
             </a>
         @empty
@@ -67,8 +67,8 @@
 <section class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-6 items-center">
     <div>
         <h3 class="text-2xl font-bold">What clients feel working with us</h3>
-        <p class="text-slate-300 mt-3">“They anticipated everything before we even asked. Our leadership offsite felt cinematic.”</p>
-        <div class="mt-4 text-slate-400 text-sm">— Priya N., COO, Fintech Unicorn</div>
+        <p class="text-slate-300 mt-3">ï¿½They anticipated everything before we even asked. Our leadership offsite felt cinematic.ï¿½</p>
+        <div class="mt-4 text-slate-400 text-sm">ï¿½ Priya N., COO, Fintech Unicorn</div>
     </div>
     <div class="glass rounded-2xl p-6 border border-white/10">
         <div class="text-lg font-semibold">Snapshot metrics</div>
@@ -98,7 +98,7 @@
         <div>
             <div class="text-sm uppercase text-cyan-200">Ready to start?</div>
             <div class="text-2xl font-bold">Let's blueprint your next experience</div>
-            <p class="text-slate-300 mt-2">Share your date, location, and vibe—we'll craft a tailored concept within 24 hours.</p>
+            <p class="text-slate-300 mt-2">Share your date, location, and vibeï¿½we'll craft a tailored concept within 24 hours.</p>
         </div>
         <a href="/contact" class="gradient-btn px-6 py-3 rounded-full font-semibold mt-4 md:mt-0">Talk to a producer</a>
     </div>
